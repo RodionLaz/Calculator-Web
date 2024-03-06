@@ -35,9 +35,7 @@ function Calculator() {
         <thead>
             <tr>
                 <td className='AC'>
-                    <button onClick={() => addtoString('(')}>(</button>
                     <button onClick={() => ClearNumbers()}>AC</button>
-                    <button onClick={() => addtoString(')')}>)</button>
                 </td>
             </tr>
             </thead>
