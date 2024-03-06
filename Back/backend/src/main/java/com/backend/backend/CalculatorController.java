@@ -1,6 +1,8 @@
 package com.backend.backend;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class CalculatorController {
 
-
-    @RequestMapping("/calculate")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/calculate")
     public float hello(@RequestBody String numbers){
         float result =0;
         try{
@@ -17,7 +19,7 @@ public class CalculatorController {
             result= calculate(numbers);
             System.out.println(result);
         }catch(Exception e){
-            result =0;
+            result =0.69f;
         }
         return result;
     }
@@ -35,10 +37,10 @@ public class CalculatorController {
         finalAndLoc[1] = h-1;
         num2 = Float.parseFloat(num2str);
         switch (op){
-            case '×':
+            case '*':
                 finalAndLoc[0] =num1*num2;
                 break;
-            case '÷':
+            case '/':
                 if (num2 != 0) {
                     finalAndLoc[0] = num1 / num2;
                 }else{
@@ -58,10 +60,6 @@ public class CalculatorController {
     }
     public float calculate(String numbers){
         numbers = numbers.replaceAll(" ", "");
-       // float[] results = sograim(numbers);
-       // if (Float.toString(results[0]) != ""){
-       //     numbers = numbers.substring(0, (int) results[1]) + results[0] + numbers.substring((int) results[2] + 1);
-        //}
         float num1;
         String  str="",str2="";
         float[] finalAndLoc;
@@ -76,7 +74,7 @@ public class CalculatorController {
                 str = "";
                 start = h + 1;
             }
-            if (b == '×' || b == '÷') {
+            if (b == '*' || b == '/') {
                 num1 = Float.parseFloat(str);
                 finalAndLoc = calculateHelper(h, b, numbers, num1);
                 end = (int) finalAndLoc[1];

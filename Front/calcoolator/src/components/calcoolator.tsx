@@ -8,7 +8,6 @@ function Calculator() {
 
     const addtoString = (num: string) => {
         setNumbers(numbers + num.toString());
-        console.log(numbers)
     }
     const ClearNumbers = () =>{
         setNumbers('');
@@ -33,6 +32,7 @@ function Calculator() {
         
         <br></br>
         <table className='Calculator-buttons'>
+        <thead>
             <tr>
                 <td className='AC'>
                     <button onClick={() => addtoString('(')}>(</button>
@@ -40,12 +40,14 @@ function Calculator() {
                     <button onClick={() => addtoString(')')}>)</button>
                 </td>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td>
                     <button onClick={() => addtoString('7')}>7</button>
                     <button onClick={() => addtoString('8')}>8</button>
                     <button onClick={() => addtoString('9')}>9</button>
-                    <button onClick={() => addtoString('÷')}>÷</button>
+                    <button onClick={() => addtoString('/')}>÷</button>
                 </td>
             </tr>
             <tr>
@@ -53,7 +55,7 @@ function Calculator() {
                     <button onClick={() => addtoString('4')}>4</button>
                     <button onClick={() => addtoString('5')}>5</button>
                     <button onClick={() => addtoString('6')}>6</button>
-                    <button onClick={() => addtoString('×')}>×</button>
+                    <button onClick={() => addtoString('*')}>×</button>
                 </td>
             </tr>
             <tr>
@@ -72,6 +74,7 @@ function Calculator() {
                     <button onClick={() => addtoString('+')}>+</button>
                 </td>
             </tr>
+            </tbody>
         </table>
     </div>
   );
