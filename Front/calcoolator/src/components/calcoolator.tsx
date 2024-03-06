@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios, { AxiosResponse} from 'axios';
+
 import '../styles/calcoolator.css'
 function Calculator() {
 
@@ -12,23 +14,22 @@ function Calculator() {
         setNumbers('');
     }
 
-    const Calculate = async (numbers:string) => {
-        const response = await fetch("http://localhost:9000",{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain'
-            },
-            body: numbers,
-        });
-        const responseData = await response.text(); 
-        setNumbers(responseData);
-        return response
+
+
+    const Calculate = async (numbers: string) => {
+        try {
+            const response: AxiosResponse = await axios.post("http://localhost:8080/calculate", numbers);
+            console.log('Response data:', response);
+            setNumbers(response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
     
   return (
     <div className="Calculator-container">
         <h1>calcoolator</h1>
-        <b>{numbers}</b>
+        <b id='nums-display'>{numbers}</b>
         
         <br></br>
         <table className='Calculator-buttons'>
